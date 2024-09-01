@@ -1,0 +1,26 @@
+<div class="container mt-5">
+  <div class="row">
+    <!-- Loop through the cars and display each as a card -->
+    <div *ngFor="let car of cars" class="col-md-4 mb-4">
+      <div class="card">
+         <!-- src not working some problem -->
+        <img *ngIf="car.returnedImg" src="car.returnedImg" class="card-img-top" alt="Car Image">
+        <div class="card-body">
+          <h5 class="card-title">{{ car.name }}</h5>
+          <p class="card-text">
+            <strong>Brand:</strong> {{ car.brand }}<br>
+            <strong>Type:</strong> {{ car.type }}<br>
+            <strong>Color:</strong> {{ car.color }}<br>
+            <strong>Transmission:</strong> {{ car.transmission }}<br>
+            <strong>Price:</strong> {{ car.price  }}<br>
+            <strong>Description:</strong> {{ car.description }}
+          </p>
+          <div class="d-flex justify-content-between">
+          
+            <button (click)="deleteCar(car.id)" class="btn btn-danger">Delete</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

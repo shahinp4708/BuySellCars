@@ -1,0 +1,128 @@
+<div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="card">
+          <div class="card-body">
+            <h3 class="card-title text-center mb-4">Post Your Car</h3>
+  
+            <!-- Form Starts Here -->
+            <form [formGroup]="postCarForm" (ngSubmit)="postCar()" enctype="multipart/form-data">
+              
+              <!-- Brand Field -->
+              <div class="form-group mb-3">
+                <label for="brand" class="form-label">Brand</label>
+                <select id="brand" formControlName="brand" class="form-select">
+                  <option *ngFor="let brand of listOfBrands" [value]="brand">{{brand}}</option>
+                </select>
+                <div *ngIf="postCarForm.get('brand')?.invalid && postCarForm.get('brand')?.touched" class="invalid-feedback">
+                  Brand is required.
+                </div>
+              </div>
+  
+              <!-- Type Field -->
+              <div class="form-group mb-3">
+                <label for="type" class="form-label">Type</label>
+                <select id="type" formControlName="type" class="form-select">
+                  <option *ngFor="let type of lisOfType" [value]="type">{{type}}</option>
+                </select>
+                <div *ngIf="postCarForm.get('type')?.invalid && postCarForm.get('type')?.touched" class="invalid-feedback">
+                  Type is required.
+                </div>
+              </div>
+  
+              <!-- Color Field -->
+              <div class="form-group mb-3">
+                <label for="color" class="form-label">Color</label>
+                <select id="color" formControlName="color" class="form-select">
+                  <option *ngFor="let color of listOfColors" [value]="color">{{color}}</option>
+                </select>
+                <div *ngIf="postCarForm.get('color')?.invalid && postCarForm.get('color')?.touched" class="invalid-feedback">
+                  Color is required.
+                </div>
+              </div>
+  
+              <!-- Transmission Field -->
+              <div class="form-group mb-3">
+                <label for="transmission" class="form-label">Transmission</label>
+                <select id="transmission" formControlName="transmission" class="form-select">
+                  <option *ngFor="let trans of listOfTransmission" [value]="trans">{{trans}}</option>
+                </select>
+                <div *ngIf="postCarForm.get('transmission')?.invalid && postCarForm.get('transmission')?.touched" class="invalid-feedback">
+                  Transmission is required.
+                </div>
+              </div>
+  
+              <!-- Price Field -->
+              <div class="form-group mb-3">
+                <label for="price" class="form-label">Price</label>
+                <input
+                  type="text"
+                  id="price"
+                  formControlName="price"
+                  class="form-control"
+                  [ngClass]="{'is-invalid': postCarForm.get('price')?.invalid && postCarForm.get('price')?.touched}"
+                  placeholder="Enter price"
+                />
+                <div *ngIf="postCarForm.get('price')?.invalid && postCarForm.get('price')?.touched" class="invalid-feedback">
+                  Price is required and should be a valid number.
+                </div>
+              </div>
+  
+              <!-- Year Field -->
+
+  
+              <!-- Name Field -->
+              <div class="form-group mb-3">
+                <label for="name" class="form-label">Car Name</label>
+                <input
+                  type="text"
+                  id="name"
+                  formControlName="name"
+                  class="form-control"
+                  [ngClass]="{'is-invalid': postCarForm.get('name')?.invalid && postCarForm.get('name')?.touched}"
+                  placeholder="Enter car name"
+                />
+                <div *ngIf="postCarForm.get('name')?.invalid && postCarForm.get('name')?.touched" class="invalid-feedback">
+                  Car name is required and should be valid.
+                </div>
+              </div>
+  
+              <!-- Description Field -->
+              <div class="form-group mb-3">
+                <label for="description" class="form-label">Description</label>
+                <textarea
+                  id="description"
+                  formControlName="description"
+                  class="form-control"
+                  [ngClass]="{'is-invalid': postCarForm.get('description')?.invalid && postCarForm.get('description')?.touched}"
+                  placeholder="Enter car description"
+                  rows="4"
+                ></textarea>
+                <div *ngIf="postCarForm.get('description')?.invalid && postCarForm.get('description')?.touched" class="invalid-feedback">
+                  Description is required.
+                </div>
+              </div>
+  
+              <!-- Image Upload -->
+              <div class="form-group mb-4">
+                <label for="img" class="form-label">Upload Image</label>
+                <input type="file" id="img" (change)="onFileSelected($event)" class="form-control">
+                <div *ngIf="imagePreview" class="mt-3">
+                  <img [src]="imagePreview" alt="Car Image" class="img-thumbnail" style="max-width: 200px;">
+                </div>
+              </div>
+  
+              <!-- Submit Button -->
+              <button type="submit" class="btn btn-primary w-100" [disabled]="postCarForm.invalid || isSpinning">
+                <span *ngIf="isSpinning" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                Post Car
+              </button>
+            </form>
+            <!-- Form Ends Here -->
+  
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
